@@ -1,0 +1,30 @@
+[gd_scene format=2]
+
+[node name="NodeIO" type="Control"]
+margin_left = 16.0
+margin_top = 146.0
+margin_right = 338.0
+margin_bottom = 173.0
+rect_min_size = Vector2( 0, 27 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LineEdit" type="LineEdit" parent="."]
+visible = false
+margin_top = 1.5
+margin_right = 159.0
+margin_bottom = 25.5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LineEdit2" type="LineEdit" parent="."]
+visible = false
+margin_left = 163.0
+margin_top = 1.5
+margin_right = 322.0
+margin_bottom = 25.5
+__meta__ = {
+"_edit_use_anchors_": false
+}
