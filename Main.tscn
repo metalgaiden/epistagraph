@@ -25,7 +25,33 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Popup" type="AcceptDialog" parent="CanvasLayer"]
+anchor_left = 0.412
+anchor_top = 0.431
+anchor_right = 0.588
+anchor_bottom = 0.545
+margin_left = 0.112
+margin_top = 0.399994
+margin_right = -0.112
+popup_exclusive = true
+window_title = "Node Title:"
+
+[node name="LineEdit" type="LineEdit" parent="CanvasLayer/Popup"]
+anchor_right = 3.025
+anchor_bottom = 0.6
+margin_left = 8.0
+margin_top = 8.0
+margin_right = -372.5
+margin_bottom = -8.8
+
+[node name="PopupMenu" type="PopupMenu" parent="CanvasLayer"]
+margin_right = 101.0
+margin_bottom = 88.0
+items = [ "Add Node", null, 0, false, false, 0, 0, null, "", false, "Add Input", null, 0, false, false, 1, 0, null, "", false, "Add Output", null, 0, false, false, 2, 0, null, "", false, "Delete Node", null, 0, false, false, 3, 0, null, "", false ]
+
 [connection signal="connection_request" from="CanvasLayer/GraphEdit" to="CanvasLayer/GraphEdit" method="_on_GraphEdit_connection_request"]
 [connection signal="disconnection_request" from="CanvasLayer/GraphEdit" to="CanvasLayer/GraphEdit" method="_on_GraphEdit_disconnection_request"]
 [connection signal="node_selected" from="CanvasLayer/GraphEdit" to="CanvasLayer/GraphEdit" method="_on_GraphEdit_node_selected"]
 [connection signal="node_unselected" from="CanvasLayer/GraphEdit" to="CanvasLayer/GraphEdit" method="_on_GraphEdit_node_unselected"]
+[connection signal="confirmed" from="CanvasLayer/Popup" to="CanvasLayer/GraphEdit" method="_on_Popup_confirmed"]
+[connection signal="id_pressed" from="CanvasLayer/PopupMenu" to="CanvasLayer/GraphEdit" method="_on_PopupMenu_id_pressed"]
