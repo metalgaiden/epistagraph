@@ -25,56 +25,53 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Popup" type="AcceptDialog" parent="CanvasLayer"]
+[node name="TitlePopup" type="WindowDialog" parent="CanvasLayer"]
 anchor_left = 0.412
 anchor_top = 0.431
 anchor_right = 0.527
-anchor_bottom = 0.545
+anchor_bottom = 0.497
 margin_left = 0.112
 margin_top = 0.399994
 margin_right = 0.35199
+margin_bottom = 0.799988
 popup_exclusive = true
 window_title = "Node Title:"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="LineEdit" type="LineEdit" parent="CanvasLayer/Popup"]
-anchor_left = 0.044
-anchor_top = 0.118
-anchor_right = 0.956
-anchor_bottom = 0.471
-margin_left = 2.808
-margin_top = -0.0240002
-margin_right = -2.80801
-margin_bottom = -0.0279999
+[node name="TitleText" type="LineEdit" parent="CanvasLayer/TitlePopup"]
+anchor_left = 0.068
+anchor_top = 0.2
+anchor_right = 0.932
+anchor_bottom = 0.8
+margin_left = -0.0240002
+margin_right = 0.0239944
+rect_min_size = Vector2( 0, 24 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Popup2" type="AcceptDialog" parent="CanvasLayer"]
+[node name="RenamePopup" type="WindowDialog" parent="CanvasLayer"]
 anchor_left = 0.412
 anchor_top = 0.431
 anchor_right = 0.527
-anchor_bottom = 0.545
+anchor_bottom = 0.5
 margin_left = 0.112
 margin_top = 0.399994
 margin_right = 0.35199
+margin_bottom = -1.0
 popup_exclusive = true
-window_title = "Node Title:"
-__meta__ = {
-"_edit_use_anchors_": false
-}
+window_title = "New Title:"
 
-[node name="LineEdit" type="LineEdit" parent="CanvasLayer/Popup2"]
-anchor_left = 0.044
-anchor_top = 0.118
-anchor_right = 0.956
-anchor_bottom = 0.471
-margin_left = 2.808
-margin_top = -0.0240002
-margin_right = -2.80801
-margin_bottom = -0.0279999
+[node name="RenameText" type="LineEdit" parent="CanvasLayer/RenamePopup"]
+anchor_left = 0.068
+anchor_top = 0.2
+anchor_right = 0.932
+anchor_bottom = 0.8
+margin_left = -0.0240002
+margin_right = 0.0239944
+rect_min_size = Vector2( 0, 24 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -82,16 +79,16 @@ __meta__ = {
 [node name="PopupMenu" type="PopupMenu" parent="CanvasLayer"]
 margin_right = 110.0
 margin_bottom = 70.0
-items = [ "Add Node", null, 0, false, false, 0, 0, null, "", false, "Rename Node", null, 0, false, false, 1, 0, null, "", false, "Delete Node", null, 0, false, false, 2, 0, null, "", false ]
+items = [ "Add Node", null, 0, false, false, 0, 0, null, "", false, "Rename Node", null, 0, false, false, 1, 0, null, "", false, "Delete Node", null, 0, false, false, 2, 0, null, "", false, "Add Input", null, 0, false, false, 3, 0, null, "", false, "Add Output", null, 0, false, false, 4, 0, null, "", false ]
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [connection signal="connection_request" from="CanvasLayer/GraphEdit" to="CanvasLayer/GraphEdit" method="_on_GraphEdit_connection_request"]
-[connection signal="disconnection_request" from="CanvasLayer/GraphEdit" to="CanvasLayer/GraphEdit" method="_on_GraphEdit_disconnection_request"]
+[connection signal="delete_nodes_request" from="CanvasLayer/GraphEdit" to="CanvasLayer/GraphEdit" method="_on_GraphEdit_delete_nodes_request"]
 [connection signal="node_selected" from="CanvasLayer/GraphEdit" to="CanvasLayer/GraphEdit" method="_on_GraphEdit_node_selected"]
 [connection signal="node_unselected" from="CanvasLayer/GraphEdit" to="CanvasLayer/GraphEdit" method="_on_GraphEdit_node_unselected"]
-[connection signal="confirmed" from="CanvasLayer/Popup" to="CanvasLayer/GraphEdit" method="_on_Popup_confirmed"]
-[connection signal="confirmed" from="CanvasLayer/Popup2" to="CanvasLayer/GraphEdit" method="_on_Popup2_confirmed"]
+[connection signal="text_entered" from="CanvasLayer/TitlePopup/TitleText" to="CanvasLayer/GraphEdit" method="_on_TitleText_text_entered"]
+[connection signal="text_entered" from="CanvasLayer/RenamePopup/RenameText" to="CanvasLayer/GraphEdit" method="_on_RenameText_text_entered"]
 [connection signal="id_pressed" from="CanvasLayer/PopupMenu" to="CanvasLayer/GraphEdit" method="_on_PopupMenu_id_pressed"]
 [connection signal="mouse_exited" from="CanvasLayer/PopupMenu" to="CanvasLayer/GraphEdit" method="_on_PopupMenu_mouse_exited"]
