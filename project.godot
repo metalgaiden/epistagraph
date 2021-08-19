@@ -13,6 +13,10 @@ config_version=4
 config/name="Epistagraph"
 run/main_scene="res://Main.tscn"
 
+[debug]
+
+gdscript/warnings/return_value_discarded=false
+
 [input]
 
 add_node={
