@@ -25,7 +25,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TitlePopup" type="WindowDialog" parent="CanvasLayer"]
+[node name="TextPopup" type="WindowDialog" parent="CanvasLayer"]
 anchor_left = 0.412
 anchor_top = 0.431
 anchor_right = 0.527
@@ -40,31 +40,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TitleText" type="LineEdit" parent="CanvasLayer/TitlePopup"]
-anchor_left = 0.068
-anchor_top = 0.2
-anchor_right = 0.932
-anchor_bottom = 0.8
-margin_left = -0.0240002
-margin_right = 0.0239944
-rect_min_size = Vector2( 0, 24 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="RenamePopup" type="WindowDialog" parent="CanvasLayer"]
-anchor_left = 0.412
-anchor_top = 0.431
-anchor_right = 0.527
-anchor_bottom = 0.5
-margin_left = 0.112
-margin_top = 0.399994
-margin_right = 0.35199
-margin_bottom = -1.0
-popup_exclusive = true
-window_title = "New Title:"
-
-[node name="RenameText" type="LineEdit" parent="CanvasLayer/RenamePopup"]
+[node name="EnterText" type="LineEdit" parent="CanvasLayer/TextPopup"]
 anchor_left = 0.068
 anchor_top = 0.2
 anchor_right = 0.932
@@ -79,16 +55,14 @@ __meta__ = {
 [node name="PopupMenu" type="PopupMenu" parent="CanvasLayer"]
 margin_right = 110.0
 margin_bottom = 70.0
-items = [ "Add Node", null, 0, false, false, 0, 0, null, "", false, "Rename Node", null, 0, false, false, 1, 0, null, "", false, "Delete Node", null, 0, false, false, 2, 0, null, "", false, "Add Input", null, 0, false, false, 3, 0, null, "", false, "Add Output", null, 0, false, false, 4, 0, null, "", false ]
+items = [ "Add Node", null, 0, false, false, 0, 0, null, "", false, "Rename Node", null, 0, false, false, 1, 0, null, "", false, "Delete Node", null, 0, false, false, 2, 0, null, "", false, "Add Input", null, 0, false, false, 3, 0, null, "", false, "Add Output", null, 0, false, false, 4, 0, null, "", false, "Save", null, 0, false, false, 5, 0, null, "", false, "Save As", null, 0, false, false, 6, 0, null, "", false, "Clear Graph", null, 0, false, false, 7, 0, null, "", false, "Open File", null, 0, false, false, 8, 0, null, "", false ]
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [connection signal="connection_request" from="CanvasLayer/GraphEdit" to="CanvasLayer/GraphEdit" method="_on_GraphEdit_connection_request"]
-[connection signal="delete_nodes_request" from="CanvasLayer/GraphEdit" to="CanvasLayer/GraphEdit" method="_on_GraphEdit_delete_nodes_request"]
+[connection signal="disconnection_request" from="CanvasLayer/GraphEdit" to="CanvasLayer/GraphEdit" method="_on_GraphEdit_disconnection_request"]
 [connection signal="node_selected" from="CanvasLayer/GraphEdit" to="CanvasLayer/GraphEdit" method="_on_GraphEdit_node_selected"]
-[connection signal="node_unselected" from="CanvasLayer/GraphEdit" to="CanvasLayer/GraphEdit" method="_on_GraphEdit_node_unselected"]
-[connection signal="text_entered" from="CanvasLayer/TitlePopup/TitleText" to="CanvasLayer/GraphEdit" method="_on_TitleText_text_entered"]
-[connection signal="text_entered" from="CanvasLayer/RenamePopup/RenameText" to="CanvasLayer/GraphEdit" method="_on_RenameText_text_entered"]
+[connection signal="text_entered" from="CanvasLayer/TextPopup/EnterText" to="CanvasLayer/GraphEdit" method="_on_EnterText_text_entered"]
 [connection signal="id_pressed" from="CanvasLayer/PopupMenu" to="CanvasLayer/GraphEdit" method="_on_PopupMenu_id_pressed"]
 [connection signal="mouse_exited" from="CanvasLayer/PopupMenu" to="CanvasLayer/GraphEdit" method="_on_PopupMenu_mouse_exited"]
