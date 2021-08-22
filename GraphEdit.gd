@@ -59,6 +59,7 @@ func init_graph(graph_data: GraphData):
 		var _e = connect_node(con.from, con.from_port, con.to, con.to_port)
 
 func clear_graph():
+	selected_node = null
 	clear_connections()
 	var nodes = get_children()
 	for node in nodes:
