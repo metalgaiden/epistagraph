@@ -8,6 +8,10 @@ onready var DropDown = get_parent().find_node("PopupMenu")
 var selected_node = null
 var save_name = "graph.res"
 
+func _ready() -> void:
+#	load_data(save_name)
+	pass
+
 func save_graph(file_name):
 	var graph_data = GraphData.new()
 	graph_data.connections = get_connection_list()
@@ -23,6 +27,7 @@ func save_graph(file_name):
 		print("saved")
 	else:
 		print("Error saving graph_data")
+	pass
 
 func load_data(file_name):
 	selected_node = null
@@ -69,7 +74,7 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventKey:
 		if Input.is_action_just_pressed("add_node"):
 			text_popup("Add Node:")
-		if Input.is_action_just_pressed("rename_node"):
+		if Input.is_action_just_pressed("rename"):
 			text_popup("Rename Node:")
 		if Input.is_action_just_pressed("add_input"):
 			add_input()
@@ -81,6 +86,7 @@ func _input(event: InputEvent) -> void:
 			text_popup("Save As:")
 		if Input.is_action_just_pressed("open_graph"):
 			text_popup("Open File:")
+	pass
 
 func add_node(title) -> void:
 	var g_node = GNode.instance()
@@ -146,10 +152,8 @@ func _on_PopupMenu_id_pressed(id):
 		6:
 			text_popup("Save As:")
 		7:
-			save_graph(save_name)
 			clear_graph()
 		8:
-			save_graph(save_name)
 			text_popup("Open File:")
 
 func _on_PopupMenu_mouse_exited():
