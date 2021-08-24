@@ -1,4 +1,4 @@
-# epistagraph
+# Epistagraph
 
 Epistagraph is a design tool for non-linear puzzle design. 
 It allows you to plan out interconnected puzzles and have an idea of what the player might be expected to know beforehand or what they will learn as they play.
@@ -6,3 +6,5 @@ It allows you to plan out interconnected puzzles and have an idea of what the pl
 To use the tool just download the latest .exe and .pck file and run the program.
 
 All actions may be done with the right click menu or through keyboard shortcuts.
+
+Make sure to save progress (stored in a .res file of the name provided) as the program does not yet have autosave functionality)
