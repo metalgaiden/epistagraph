@@ -7,4 +7,4 @@ To use the tool just download the latest .exe and .pck file and run the program.
 
 All actions may be done with the right click menu or through keyboard shortcuts.
 
-Make sure to save progress (stored in a .res file of the name provided) as the program does not yet have autosave functionality)
+Make sure to save progress (stored in a .res file of the name provided) as the program does not yet have autosave functionality.
