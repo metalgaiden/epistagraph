@@ -1,7 +1,8 @@
 # Epistagraph
 
-Epistagraph is a design tool for non-linear puzzle design. 
-It allows you to plan out interconnected puzzles and have an idea of what the player might be expected to know beforehand or what they will learn as they play.
+Epistagraph is a design tool for knowlege based progression systems, or "knowlege checks" as they are more commonly known.
+It allows the designer to be specific about where a player is expected to learn about a certain mechanic, and better plan to avoid frustrating scenarios in non-linear games.
+It can also be used to create elaborate and interconnected secrets and puzzles, especially ARGs.
 
 To use the tool just download the latest .exe and .pck file and run the program.
 
