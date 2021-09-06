@@ -6,7 +6,6 @@
 margin_right = 354.0
 margin_bottom = 151.0
 title = "sample node"
-show_close = true
 slot/0/left_enabled = false
 slot/0/left_type = 0
 slot/0/left_color = Color( 1, 1, 1, 1 )
@@ -63,4 +62,6 @@ __meta__ = {
 }
 
 [connection signal="close_request" from="." to="." method="_on_GraphNode_close_request"]
+[connection signal="mouse_entered" from="." to="." method="_on_GraphNode_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_GraphNode_mouse_exited"]
 [connection signal="resize_request" from="." to="." method="_on_GraphNode_resize_request"]

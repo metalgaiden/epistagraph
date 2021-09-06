@@ -6,10 +6,11 @@ onready var TextPopup = get_parent().find_node("TextPopup")
 onready var EnterText = TextPopup.find_node("EnterText")
 onready var DropDown = get_parent().find_node("PopupMenu")
 var selected_node = null
+var hovered_node = null
 var save_name = "graph.res"
 
 func _ready() -> void:
-#	load_data(save_name)
+	load_data(save_name)
 	pass
 
 func save_graph(file_name):
@@ -70,6 +71,18 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_RIGHT:
 			if event.pressed:
+				if (hovered_node != null):
+					DropDown.set_item_disabled(1, false)
+					DropDown.set_item_disabled(2, false)
+					DropDown.set_item_disabled(3, false)
+					DropDown.set_item_disabled(4, false)
+				else:
+					DropDown.set_item_disabled(1, true)
+					DropDown.set_item_disabled(2, true)
+					DropDown.set_item_disabled(3, true)
+					DropDown.set_item_disabled(4, true)
+				set_selected(hovered_node)
+				selected_node = hovered_node
 				DropDown.rect_position = event.position + Vector2(-12,-12)
 				DropDown.popup()
 	if event is InputEventKey:
@@ -94,6 +107,7 @@ func add_node(title) -> void:
 	g_node.offset = get_viewport().get_mouse_position() + Vector2(-12,-12)
 	g_node.title = title
 	add_child(g_node)
+	hovered_node = g_node
 
 func add_input() -> void:
 	if(selected_node != null):

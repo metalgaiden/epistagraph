@@ -44,3 +44,9 @@ func _on_GraphNode_close_request():
 
 func _on_GraphNode_resize_request(new_minsize):
 	rect_size = new_minsize
+
+func _on_GraphNode_mouse_entered() -> void:
+	get_parent().hovered_node = self
+
+func _on_GraphNode_mouse_exited() -> void:
+	get_parent().hovered_node = null
