@@ -1,6 +1,11 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://GraphEdit.gd" type="Script" id=1]
+[ext_resource path="res://font/RobotoMono-Medium.ttf" type="DynamicFontData" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+size = 25
+font_data = ExtResource( 2 )
 
 [node name="Main" type="Control"]
 anchor_right = 1.0
@@ -60,9 +65,32 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="GPrint" type="Label" parent="CanvasLayer"]
+visible = false
+anchor_left = 0.979
+anchor_top = 0.017
+anchor_right = 0.979
+anchor_bottom = 0.017
+margin_left = -338.496
+margin_top = -10.2
+margin_right = -0.496033
+margin_bottom = 16.8
+custom_fonts/font = SubResource( 1 )
+text = "graph saved"
+align = 2
+valign = 2
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Timer" type="Timer" parent="CanvasLayer/GPrint"]
+wait_time = 3.0
+
 [connection signal="connection_request" from="CanvasLayer/GraphEdit" to="CanvasLayer/GraphEdit" method="_on_GraphEdit_connection_request"]
 [connection signal="disconnection_request" from="CanvasLayer/GraphEdit" to="CanvasLayer/GraphEdit" method="_on_GraphEdit_disconnection_request"]
 [connection signal="node_selected" from="CanvasLayer/GraphEdit" to="CanvasLayer/GraphEdit" method="_on_GraphEdit_node_selected"]
 [connection signal="text_entered" from="CanvasLayer/TextPopup/EnterText" to="CanvasLayer/GraphEdit" method="_on_EnterText_text_entered"]
 [connection signal="id_pressed" from="CanvasLayer/PopupMenu" to="CanvasLayer/GraphEdit" method="_on_PopupMenu_id_pressed"]
 [connection signal="mouse_exited" from="CanvasLayer/PopupMenu" to="CanvasLayer/GraphEdit" method="_on_PopupMenu_mouse_exited"]
+[connection signal="timeout" from="CanvasLayer/GPrint/Timer" to="CanvasLayer/GraphEdit" method="_on_Timer_timeout"]

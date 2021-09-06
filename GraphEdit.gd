@@ -5,6 +5,7 @@ onready var NodeIO = load("res://NodeIO.tscn")
 onready var TextPopup = get_parent().find_node("TextPopup")
 onready var EnterText = TextPopup.find_node("EnterText")
 onready var DropDown = get_parent().find_node("PopupMenu")
+onready var GPrint = get_parent().find_node("GPrint")
 var selected_node = null
 var hovered_node = null
 var save_name = "graph.res"
@@ -25,9 +26,9 @@ func save_graph(file_name):
 			node_data.data = node.get_data()
 			graph_data.nodes.append(node_data)
 	if ResourceSaver.save(file_name, graph_data) == OK:
-		print("saved")
+		g_print(save_name + " saved")
 	else:
-		print("Error saving graph_data")
+		g_print("Error saving graph_data")
 	pass
 
 func load_data(file_name):
@@ -36,11 +37,11 @@ func load_data(file_name):
 		var graph_data = ResourceLoader.load(file_name)
 		if graph_data is GraphData:
 			init_graph(graph_data)
-			print("loaded")
+			g_print(save_name + " loaded")
 		else:
-			print("error loading graph")
+			g_print("Error loading graph")
 	else:
-		print("error loading graph")
+		g_print("Error loading graph")
 
 func init_graph(graph_data: GraphData):
 	clear_graph()
@@ -138,6 +139,14 @@ func add_output() -> void:
 			true, 0, Color(0,1,0,1), null, null)
 		selected_node.o += 1
 
+func g_print(output) -> void:
+	GPrint.text = output
+	GPrint.visible = true
+	GPrint.get_child(0).start()
+
+func _on_Timer_timeout() -> void:
+	GPrint.visible = false
+
 func _on_GraphEdit_connection_request(from, from_slot, to, to_slot):
 	connect_node(from, from_slot, to, to_slot)
 
@@ -190,7 +199,10 @@ func _on_EnterText_text_entered(new_text: String) -> void:
 			if selected_node != null:
 				selected_node.title = new_text
 		"Save As:":
-			save_name = new_text + ".res"
+			if (new_text.ends_with(".res")):
+				save_name = new_text
+			else:
+				save_name = new_text + ".res"
 			save_graph(save_name)
 		"Open File:":
 			save_name = new_text + ".res"
