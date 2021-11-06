@@ -66,15 +66,14 @@ __meta__ = {
 }
 
 [node name="GPrint" type="Label" parent="CanvasLayer"]
-visible = false
 anchor_left = 0.979
 anchor_top = 0.017
 anchor_right = 0.979
 anchor_bottom = 0.017
-margin_left = -338.496
+margin_left = -747.496
 margin_top = -10.2
-margin_right = -0.496033
-margin_bottom = 16.8
+margin_right = -0.495972
+margin_bottom = 23.8
 custom_fonts/font = SubResource( 1 )
 text = "graph saved"
 align = 2

@@ -36,7 +36,7 @@ func set_data(data: Dictionary, NodeIO) -> void:
 		set_slot(j, e_left, 0, Color(1,0,1,1), 
 			e_right, 0, Color(0,1,0,1), null, null)
 		j += 1
-		add_child(node_io)
+		add_child(node_io, true)
 
 func _on_GraphNode_close_request():
 	get_parent().selected_node = null

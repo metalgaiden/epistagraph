@@ -33,28 +33,30 @@ func save_graph(file_name):
 
 func load_data(file_name):
 	selected_node = null
+	if !file_name.ends_with(".res"):
+		file_name = file_name + ".res"
 	if ResourceLoader.exists(file_name):
 		var graph_data = ResourceLoader.load(file_name)
 		if graph_data is GraphData:
+			save_name = file_name
 			init_graph(graph_data)
 			g_print(save_name + " loaded")
 		else:
 			g_print("Error loading graph")
 	else:
-		g_print("Error loading graph")
+		g_print(file_name + " does not exist")
 
 func init_graph(graph_data: GraphData):
 	clear_graph()
 	var name_changes = {}
 	for node in graph_data.nodes:
-		# Get new node from factory autoload (singleton)
 		var gnode = GNode.instance()
 		gnode.offset = node.offset
 		gnode.name = node.name
-		name_changes[node.name] = gnode.name
 		gnode.title = node.title
 		gnode.set_data(node.data, NodeIO)
-		add_child(gnode)
+		add_child(gnode, true)
+		name_changes[node.name] = gnode.name
 	for con in graph_data.connections:
 		con.from = name_changes[con.from]
 		con.to = name_changes[con.to]
@@ -107,7 +109,7 @@ func add_node(title) -> void:
 	var g_node = GNode.instance()
 	g_node.offset = get_viewport().get_mouse_position() + Vector2(-12,-12)
 	g_node.title = title
-	add_child(g_node)
+	add_child(g_node, true)
 	hovered_node = g_node
 
 func add_input() -> void:
@@ -165,6 +167,9 @@ func _on_PopupMenu_id_pressed(id):
 				text_popup("Rename Node:")
 		2:
 			if selected_node != null:
+				for con in get_connection_list():
+					if con.to == selected_node.name or con.from == selected_node.name:
+						disconnect_node(con.from, con.from_port, con.to, con.to_port)
 				selected_node.queue_free()
 				selected_node = null
 		3:
@@ -205,5 +210,4 @@ func _on_EnterText_text_entered(new_text: String) -> void:
 				save_name = new_text + ".res"
 			save_graph(save_name)
 		"Open File:":
-			save_name = new_text + ".res"
-			load_data(save_name)
+			load_data(new_text)
