@@ -9,10 +9,20 @@ onready var GPrint = get_parent().find_node("GPrint")
 var selected_node = null
 var hovered_node = null
 var save_name = "graph.res"
+var arguments = {}
 
 func _ready() -> void:
+	load_arguments()
+	if arguments.has("file"):
+		save_name = arguments["file"]
 	load_data(save_name)
-	pass
+
+func load_arguments() -> void:
+	for argument in OS.get_cmdline_args():
+		# Parse valid command-line arguments into a dictionary
+		if argument.find("=") > -1:
+			var key_value = argument.split("=")
+			arguments[key_value[0].lstrip("--")] = key_value[1]
 
 func save_graph(file_name):
 	var graph_data = GraphData.new()
