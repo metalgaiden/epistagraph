@@ -19,10 +19,11 @@ func _ready() -> void:
 	if arguments.has("save"):
 		if arguments["save"] == "off":
 			save = false
-			DropDown.set_item_disabled(5, true)
-			DropDown.set_item_disabled(6, true)
-			DropDown.set_item_disabled(7, true)
-			DropDown.set_item_disabled(8, true)
+	if save == false:
+		DropDown.set_item_disabled(5, true)
+		DropDown.set_item_disabled(6, true)
+		DropDown.set_item_disabled(7, true)
+		DropDown.set_item_disabled(8, true)
 	load_data(save_name)
 
 func load_arguments() -> void:
