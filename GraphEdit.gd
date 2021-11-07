@@ -10,11 +10,19 @@ var selected_node = null
 var hovered_node = null
 var save_name = "graph.res"
 var arguments = {}
+var save = true
 
 func _ready() -> void:
 	load_arguments()
 	if arguments.has("file"):
 		save_name = arguments["file"]
+	if arguments.has("save"):
+		if arguments["save"] == "off":
+			save = false
+			DropDown.set_item_disabled(5, true)
+			DropDown.set_item_disabled(6, true)
+			DropDown.set_item_disabled(7, true)
+			DropDown.set_item_disabled(8, true)
 	load_data(save_name)
 
 func load_arguments() -> void:
@@ -107,11 +115,11 @@ func _input(event: InputEvent) -> void:
 			add_input()
 		if Input.is_action_just_pressed("add_output"):
 			add_output()
-		if Input.is_action_just_pressed("save"):
+		if Input.is_action_just_pressed("save") && save == true:
 			save_graph(save_name)
-		if Input.is_action_just_pressed("save_as"):
+		if Input.is_action_just_pressed("save_as") && save == true:
 			text_popup("Save As:")
-		if Input.is_action_just_pressed("open_graph"):
+		if Input.is_action_just_pressed("open_graph") && save == true:
 			text_popup("Open File:")
 	pass
 
